@@ -1,4 +1,4 @@
-import axios from "./request";
+import axios from "@/apis/request";
 const BASE_URL = import.meta.env.VITE_ENV_BASE;
 
 console.log("axios-BASE_URL", BASE_URL);

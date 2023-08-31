@@ -3,6 +3,7 @@ import Axios from "axios";
 const axios = Axios.create();
 /**
  * @desc 错误处理
+ * @param err 错误信息
  */
 function handleErr(err: any) {
   return Promise.reject(err);

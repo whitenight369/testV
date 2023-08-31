@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import postcssPresetEnv from "postcss-preset-env";
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command, ssrBuild }) => {
@@ -18,13 +19,27 @@ export default defineConfig(({ mode, command, ssrBuild }) => {
 
   return {
     plugins: [react()],
-    css: {
-      postcss: {
-        plugins: [postcssPresetEnv({})],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
       },
     },
-    server: {
-      origin: "0.0.0.0",
+    css: {
+      postcss: {
+        plugins: [
+          postcssPresetEnv({
+            /** postcss预设 */
+          }),
+        ],
+      },
+      preprocessorOptions: {
+        less: {
+          math: "always", // less中总是可以进行数学的运算
+        },
+      },
     },
+    // server: {
+    //   origin: "0.0.0.0",
+    // },
   };
 });
